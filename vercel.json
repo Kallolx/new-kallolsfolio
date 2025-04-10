@@ -7,5 +7,8 @@
   ],
   "buildCommand": "chmod +x build-fix.sh && ./build-fix.sh",
   "installCommand": "npm install --force",
-  "framework": "nextjs"
+  "framework": "nextjs",
+  "env": {
+    "NODE_PATH": "src"
+  }
 } 
