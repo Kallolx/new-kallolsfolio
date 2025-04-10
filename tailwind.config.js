@@ -8,19 +8,7 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        primary: {
-          50: '#f0f9ff',
-          100: '#e0f2fe',
-          200: '#bae6fd',
-          300: '#7dd3fc',
-          400: '#38bdf8',
-          500: '#0ea5e9',
-          600: '#0284c7',
-          700: '#0369a1',
-          800: '#075985',
-          900: '#0c4a6e',
-          950: '#082f49',
-        },
+        primary: "#090245",
         secondary: "#997ef1",
       },
       fontFamily: {
@@ -46,15 +34,13 @@ module.exports = {
           'to': { transform: 'translate(calc(100cqw - 100%), 0)' },
         },
         'spin-around': {
-          '0%': { transform: 'translateZ(0) rotate(0)' },
-          '15%, 35%': { transform: 'translateZ(0) rotate(90deg)' },
-          '65%, 85%': { transform: 'translateZ(0) rotate(270deg)' },
-          '100%': { transform: 'translateZ(0) rotate(360deg)' },
+          'from': { transform: 'rotate(0deg) translateY(0)' },
+          'to': { transform: 'rotate(360deg) translateY(0)' },
         },
         'aurora': {
-          '0%': { backgroundPosition: '0% center' },
-          '50%': { backgroundPosition: '100% center' },
-          '100%': { backgroundPosition: '0% center' },
+          '0%': { backgroundPosition: '0% 50%' },
+          '50%': { backgroundPosition: '100% 50%' },
+          '100%': { backgroundPosition: '0% 50%' },
         },
       },
     },
