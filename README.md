@@ -1,24 +1,52 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Next.js Project with Interactive UI Components
+
+This project features modern UI components built with Next.js, Tailwind CSS, and interactive elements.
+
+## Features
+
+- Interactive 3D Globe visualization using cobe
+- Animated hero sections with testimonials
+- Collaboration banner showcasing client work
+- Responsive design for all screen sizes
+
+## Tech Stack
+
+- Next.js
+- TypeScript
+- Tailwind CSS
+- Framer Motion for animations
+- Cobe for 3D globe visualization
 
 ## Getting Started
 
-First, run the development server:
+First, install the dependencies:
+
+```bash
+npm install
+# or
+yarn install
+```
+
+Then, run the development server:
 
 ```bash
 npm run dev
 # or
 yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Deployment
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+This project is configured for easy deployment on Vercel. Just connect your GitHub repository to Vercel for continuous deployment.
+
+## Project Structure
+
+- `src/app` - Main application pages
+- `src/components` - Reusable UI components
+- `src/data` - Data files for the application
+- `public` - Static assets like images
 
 ## Learn More
 
