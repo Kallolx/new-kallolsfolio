@@ -120,9 +120,9 @@ export default function Navbar() {
                 shimmerColor="#997ef1"
                 background="#090245"
                 borderRadius="9999px"
-                className="flex items-center gap-2"
+                className="flex items-center gap-2 whitespace-nowrap"
               >
-                <span className="font-normal">Connect Now</span>
+                Connect Now
                 <Image 
                   src="/arrow.svg"
                   alt="Arrow Icon"

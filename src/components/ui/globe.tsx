@@ -9,16 +9,16 @@ import { cn } from "@/lib/utils";
 const MOVEMENT_DAMPING = 1400;
 
 const GLOBE_CONFIG: COBEOptions = {
-  width: 800,
-  height: 800,
+  width: 400,
+  height: 400,
   onRender: () => {},
-  devicePixelRatio: 2,
-  phi: 0,
-  theta: 0.3,
+  devicePixelRatio: 1,
+  phi: 2.5,
+  theta: 0.5,
   dark: 0.2,
   diffuse: 0.8,
-  mapSamples: 16000,
-  mapBrightness: 1.2,
+  mapSamples: 8000,
+  mapBrightness: 1.5,
   baseColor: [1, 1, 1],
   markerColor: [251 / 255, 100 / 255, 21 / 255],
   glowColor: [1, 1, 1],
@@ -43,7 +43,7 @@ export function Globe({
   className?: string;
   config?: COBEOptions;
 }) {
-  let phi = 0;
+  let phi = config.phi || 0;
   let width = 0;
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const pointerInteracting = useRef<number | null>(null);
@@ -86,14 +86,18 @@ export function Globe({
       width: width * 2,
       height: width * 2,
       onRender: (state) => {
-        if (!pointerInteracting.current) phi += 0.005;
+        if (!pointerInteracting.current) phi += 0.003;
         state.phi = phi + rs.get();
         state.width = width * 2;
         state.height = width * 2;
       },
     });
 
-    setTimeout(() => (canvasRef.current!.style.opacity = "1"), 0);
+    // Set opacity to 1 immediately to make it visible faster
+    if (canvasRef.current) {
+      canvasRef.current.style.opacity = "1";
+    }
+    
     return () => {
       globe.destroy();
       window.removeEventListener("resize", onResize);
@@ -103,26 +107,28 @@ export function Globe({
   return (
     <div
       className={cn(
-        "absolute inset-0 mx-auto aspect-[1/1] w-full max-w-[600px]",
+        "w-full h-full flex items-center justify-center overflow-visible",
         className,
       )}
     >
-      <canvas
-        className={cn(
-          "size-full opacity-0 transition-opacity duration-500 [contain:layout_paint_size]",
-        )}
-        ref={canvasRef}
-        onPointerDown={(e) => {
-          pointerInteracting.current = e.clientX;
-          updatePointerInteraction(e.clientX);
-        }}
-        onPointerUp={() => updatePointerInteraction(null)}
-        onPointerOut={() => updatePointerInteraction(null)}
-        onMouseMove={(e) => updateMovement(e.clientX)}
-        onTouchMove={(e) =>
-          e.touches[0] && updateMovement(e.touches[0].clientX)
-        }
-      />
+      <div className="w-full h-full flex items-center justify-center">
+        <canvas
+          className={cn(
+            "w-[400%] h-[400%] max-w-none opacity-0 transition-opacity duration-300 -translate-x-[15%] -translate-y-[5%]"
+          )}
+          ref={canvasRef}
+          onPointerDown={(e) => {
+            pointerInteracting.current = e.clientX;
+            updatePointerInteraction(e.clientX);
+          }}
+          onPointerUp={() => updatePointerInteraction(null)}
+          onPointerOut={() => updatePointerInteraction(null)}
+          onMouseMove={(e) => updateMovement(e.clientX)}
+          onTouchMove={(e) =>
+            e.touches[0] && updateMovement(e.touches[0].clientX)
+          }
+        />
+      </div>
     </div>
   );
 }

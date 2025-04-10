@@ -1,5 +1,6 @@
-@import "tailwindcss";
-@import "tw-animate-css";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 @custom-variant dark (&:is(.dark *));
 
@@ -89,6 +90,7 @@
   --accent: #f1f5f9;
   --accent-foreground: #000000;
   --destructive: #ef4444;
+  --destructive-foreground: #ffffff;
   --border: #e2e8f0;
   --input: #e2e8f0;
   --ring: #94a3b8;
@@ -128,6 +130,7 @@
   --accent: #1a1378;
   --accent-foreground: #ffffff;
   --destructive: #ef4444;
+  --destructive-foreground: #ffffff;
   --border: rgba(255, 255, 255, 0.1);
   --input: rgba(255, 255, 255, 0.15);
   --ring: #94a3b8;
@@ -153,10 +156,52 @@
 
 @layer base {
   * {
-    @apply border-border outline-ring/50;
+    @apply border-border;
+    outline-color: color-mix(in srgb, var(--ring) 50%, transparent);
   }
   body {
     @apply bg-background text-foreground font-sans;
+  }
+
+  @keyframes rainbow {
+    0% {
+      background-position: 0%;
+    }
+    100% {
+      background-position: 200%;
+    }
+  }
+
+  @keyframes shimmer-slide {
+    to {
+      transform: translate(calc(100cqw - 100%), 0);
+    }
+  }
+
+  @keyframes spin-around {
+    0% {
+      transform: translateZ(0) rotate(0);
+    }
+    15%, 35% {
+      transform: translateZ(0) rotate(90deg);
+    }
+    65%, 85% {
+      transform: translateZ(0) rotate(270deg);
+    }
+    100% {
+      transform: translateZ(0) rotate(360deg);
+    }
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
 }
 
@@ -170,62 +215,12 @@
     width: 100%;
     height: 100%;
   }
-}
-
-/* Add custom styles for the landing page */
-.gradient-text {
-  @apply text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary;
-}
-
-/* Add keyframes for animations */
-@keyframes rainbow {
-  0% {
-    background-position: 0%;
+  
+  .gradient-text {
+    @apply text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary;
   }
-  100% {
-    background-position: 200%;
+  
+  .animate-fade-in {
+    animation: fadeIn 0.5s ease-out forwards;
   }
 }
-
-@keyframes shimmer-slide {
-  to {
-    transform: translate(calc(100cqw - 100%), 0);
-  }
-}
-
-@keyframes spin-around {
-  0% {
-    transform: translateZ(0) rotate(0);
-  }
-  15%, 35% {
-    transform: translateZ(0) rotate(90deg);
-  }
-  65%, 85% {
-    transform: translateZ(0) rotate(270deg);
-  }
-  100% {
-    transform: translateZ(0) rotate(360deg);
-  }
-}
-
-/* Add the fade-in animation for tech descriptions */
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.animate-fade-in {
-  animation: fadeIn 0.5s ease-out forwards;
-}
-
-@layer base {
-  * {
-    @apply border-border outline-ring/50;}
-  body {
-    @apply bg-background text-foreground;}}

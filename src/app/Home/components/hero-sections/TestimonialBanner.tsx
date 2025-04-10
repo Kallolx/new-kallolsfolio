@@ -64,6 +64,7 @@ export default function TestimonialBanner() {
   return (
     <div className="relative w-full rounded-lg overflow-hidden">
       {/* Card background with its own animation */}
+      
       <motion.div 
         className="absolute inset-0 w-full h-full"
         initial="hidden"
@@ -84,14 +85,15 @@ export default function TestimonialBanner() {
       
       {/* Content Container - Full height with flex */}
       <motion.div 
-        className="relative z-10 flex flex-col h-full w-full p-6 md:p-6"
+        className="relative z-10 flex flex-col h-full w-full p-6 md:p-8"
         initial="hidden"
         animate={isClient ? "visible" : "hidden"}
         variants={containerVariants}
       >
         <div className="flex flex-col md:flex-row h-full w-full">
+          
           {/* Left section with testimonial content */}
-          <div className="w-full md:w-1/2 flex flex-col justify-center space-y-6 h-full">
+          <div className="w-full md:w-1/2 flex flex-col justify-center space-y-2 h-full">
             {/* 40+ text with Aurora effect and User avatars side by side */}
             <motion.div 
               className="flex items-center justify-start gap-4"
@@ -151,12 +153,11 @@ export default function TestimonialBanner() {
           </div>
           
           {/* Right section with interactive Globe component */}
-          <div className="w-full md:w-1/2 flex items-center justify-center h-full ">
-            <div className="relative h-auto w-[200px]">
-              <Globe />
+          <div className="w-full md:w-1/2 flex items-center justify-end overflow-visible">
+            <div className="relative h-[150px] w-[150px] md:h-[180px] md:w-[200px] -mr-10">
+              <Globe className="w-full h-full" />
             </div>
           </div>
-
         </div>
       </motion.div>
     </div>
